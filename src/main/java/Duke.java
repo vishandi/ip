@@ -55,7 +55,7 @@ public class Duke {
                 taskList[numTask] = new Event(description, eventTime);
                 numTask += 1;
             }
-            System.out.println("Got it. I've added this task: ");
+            System.out.println("Got it. I've added this task:");
             System.out.println(taskList[numTask - 1]);
             System.out.printf("Now you have %s tasks in the list.\n", numTask);
         }
