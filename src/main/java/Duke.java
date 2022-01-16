@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Duke {
     private static ArrayList<Task> taskList = new ArrayList<>();
-    private static String[] commands = new String[] {"mark", "unmark", "todo", "deadline", "event"};
+    private static String[] commands = new String[] {"mark", "unmark", "todo", "deadline", "event", "delete"};
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -63,6 +63,19 @@ public class Duke {
                              System.out.println(taskList.get(index));
                          } catch (Exception e) {
                              throw new DukeException("Sorry, I don't understand which task should I unmark as done :(");
+                         }
+                         break;
+
+                     case "delete":
+                         try {
+                             int index = Integer.parseInt(userInput.substring(7)) - 1;
+                             Task deleted = taskList.get(index);
+                             System.out.println("Noted. I've removed this task:");
+                             System.out.println(deleted);
+                             taskList.remove(index);
+                             System.out.printf("Now you have %s tasks in the list.\n", taskList.size());
+                         } catch (Exception e) {
+                             throw new DukeException("Sorry, I don't understand which task should I delete :(");
                          }
                          break;
 
