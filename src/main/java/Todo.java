@@ -11,9 +11,9 @@ public class Todo extends Task {
     @Override
     public String toString() {
         if (this.isDone) {
-            return String.format("[T] [X] %s", this.description);
+            return String.format("[T][X] %s", this.description);
         } else {
-            return String.format("[T] [ ] %s", this.description);
+            return String.format("[T][ ] %s", this.description);
         }
     }
 }

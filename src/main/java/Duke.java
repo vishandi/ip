@@ -30,17 +30,22 @@ public class Duke {
     }
     public static void processUserInput(String userInput) {
          if (userInput.equals("list")) {
-            for (int i = 0; i < taskList.size(); i++) {
-                System.out.print(i + 1);
-                System.out.print(".");
-                System.out.println(taskList.get(i));
+            if (taskList.isEmpty()) {
+                System.out.println("You don't have any task at the moment.");
+            } else {
+                System.out.println("Here are your current tasks:");
+                for (int i = 0; i < taskList.size(); i++) {
+                    System.out.print(i + 1);
+                    System.out.print(".");
+                    System.out.println(taskList.get(i));
+                }
             }
         } else {
              String[] userInputs = userInput.split(" ");
              String command = userInputs[0];
              try {
                  if (!Arrays.stream(commands).anyMatch(command::equals)) {
-                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means:(");
+                     throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
                  }
 
                  switch (command) {
