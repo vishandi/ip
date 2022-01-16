@@ -1,9 +1,9 @@
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Duke {
-    private static Task[] taskList = new Task[100];
-    private static int numTask = 0;
+    private static ArrayList<Task> taskList = new ArrayList<>();
     private static String[] commands = new String[] {"mark", "unmark", "todo", "deadline", "event"};
 
     public static void main(String[] args) {
@@ -25,15 +25,15 @@ public class Duke {
 
     public static void addingTaskMessage() {
         System.out.println("Got it. I've added this task:");
-        System.out.println(taskList[numTask - 1]);
-        System.out.printf("Now you have %s tasks in the list.\n", numTask);
+        System.out.println(taskList.get(taskList.size() - 1));
+        System.out.printf("Now you have %s tasks in the list.\n", taskList.size());
     }
     public static void processUserInput(String userInput) {
          if (userInput.equals("list")) {
-            for (int i = 0; i < numTask; i++) {
+            for (int i = 0; i < taskList.size(); i++) {
                 System.out.print(i + 1);
                 System.out.print(".");
-                System.out.println(taskList[i]);
+                System.out.println(taskList.get(i));
             }
         } else {
              String[] userInputs = userInput.split(" ");
@@ -47,9 +47,9 @@ public class Duke {
                      case "mark":
                          try {
                              int index = Integer.parseInt(userInput.substring(5)) - 1;
-                             taskList[index].markAsDone();
+                             taskList.get(index).markAsDone();
                              System.out.println("Nice! I've marked this task as done:");
-                             System.out.println(taskList[index]);
+                             System.out.println(taskList.get(index));
                          } catch (Exception e) {
                              throw new DukeException("Sorry, I don't understand which task should I mark as done :(");
                          }
@@ -58,9 +58,9 @@ public class Duke {
                      case "unmark":
                          try {
                              int index = Integer.parseInt(userInput.substring(7)) - 1;
-                             taskList[index].unmarkAsDone();
+                             taskList.get(index).unmarkAsDone();
                              System.out.println("OK, I've marked this task as not done yet:");
-                             System.out.println(taskList[index]);
+                             System.out.println(taskList.get(index));
                          } catch (Exception e) {
                              throw new DukeException("Sorry, I don't understand which task should I unmark as done :(");
                          }
@@ -69,8 +69,7 @@ public class Duke {
                      case "todo":
                          try {
                              String description = userInput.split(" ", 2)[1];
-                             taskList[numTask] = new Todo(description);
-                             numTask += 1;
+                             taskList.add(new Todo(description));
                              addingTaskMessage();
                          } catch (Exception e) {
                              throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
@@ -82,8 +81,7 @@ public class Duke {
                              String[] descriptionAndTime = userInput.substring(9).split(" /by ");
                              String description = descriptionAndTime[0];
                              String deadlineTime = descriptionAndTime[1];
-                             taskList[numTask] = new Deadline(description, deadlineTime);
-                             numTask += 1;
+                             taskList.add(new Deadline(description, deadlineTime));
                              addingTaskMessage();
                          } catch (Exception e) {
                              throw new DukeException("When is the due date of this deadline?");
@@ -95,8 +93,7 @@ public class Duke {
                              String[] descriptionAndTime = userInput.substring(6).split(" /at ");
                              String description = descriptionAndTime[0];
                              String eventTime = descriptionAndTime[1];
-                             taskList[numTask] = new Event(description, eventTime);
-                             numTask += 1;
+                             taskList.add(new Event(description, eventTime));
                              addingTaskMessage();
                          } catch (Exception e) {
                              throw new DukeException("What time is this event gonna be?");
