@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -72,15 +73,15 @@ public class TaskList {
             }
         case "D":
             if (description[1].equals("1")) {
-                return new Deadline(description[2], true, description[3]);
+                return new Deadline(description[2], true, LocalDate.parse(description[3]));
             } else {
-                return new Deadline(description[2], false, description[3]);
+                return new Deadline(description[2], false, LocalDate.parse(description[3]));
             }
         case "E":
             if (description[1].equals("1")) {
-                return new Event(description[2], true, description[3]);
+                return new Event(description[2], true, LocalDate.parse(description[3]));
             } else {
-                return new Event(description[2], false, description[3]);
+                return new Event(description[2], false, LocalDate.parse(description[3]));
             }
         default:
             throw new DukeException("Please check your file, some of its lines are corrupted :(");
