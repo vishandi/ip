@@ -11,6 +11,15 @@ public class Event extends Task {
     }
 
     @Override
+    public String getSaveMessage() {
+        if (this.isDone) {
+            return String.format("E / 1 / %s / %s", this.description, this.eventTime);
+        } else {
+            return String.format("E / 0 / %s / %s", this.description, this.eventTime);
+        }
+    }
+
+    @Override
     public String toString() {
         if (this.isDone) {
             return String.format("[E][X] %s (at: %s)", this.description, this.eventTime);
