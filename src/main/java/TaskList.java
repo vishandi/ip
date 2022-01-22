@@ -33,4 +33,20 @@ public class TaskList {
         System.out.println(taskList.get(taskList.size() - 1));
         System.out.printf("Now you have %s tasks in the list.\n", taskList.size());
     }
+
+    @Override
+    public String toString() {
+        if (this.taskList.isEmpty()) {
+            return "You don't have any task at the moment.";
+        } else {
+            StringBuilder msg = new StringBuilder();
+            msg.append("Here are your current tasks:\n");
+            for (int i = 0; i < this.taskList.size(); i++) {
+                msg.append(i + 1);
+                msg.append(". ");
+                msg.append(this.taskList.get(i).toString());
+            }
+            return msg.toString();
+        }
+    }
 }
