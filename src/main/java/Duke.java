@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -90,10 +91,10 @@ public class Duke {
                      try {
                          String[] descriptionAndTime = userInput.substring(9).split(" /by ");
                          String description = descriptionAndTime[0];
-                         String deadlineTime = descriptionAndTime[1];
+                         LocalDate deadlineTime = LocalDate.parse(descriptionAndTime[1].trim());
                          TASK_LIST.addTask(new Deadline(description, deadlineTime));
                      } catch (Exception e) {
-                         throw new DukeException("OOPS!!! Your command is incomplete :(");
+                         throw new DukeException("OOPS!!! I don't understand your command :(");
                      }
                      break;
 
@@ -101,10 +102,10 @@ public class Duke {
                      try {
                          String[] descriptionAndTime = userInput.substring(6).split(" /at ");
                          String description = descriptionAndTime[0];
-                         String eventTime = descriptionAndTime[1];
+                         LocalDate eventTime = LocalDate.parse(descriptionAndTime[1].trim());
                          TASK_LIST.addTask(new Event(description, eventTime));
                      } catch (Exception e) {
-                         throw new DukeException("OOPS!!! Your command is incomplete :(");
+                         throw new DukeException("OOPS!!! I don't understand your command :(");
                      }
                      break;
                  }
