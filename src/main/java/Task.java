@@ -7,6 +7,8 @@ public abstract class Task {
         this.isDone = isDone;
     }
 
+    public abstract String getSaveMessage();
+
     public void markAsDone() {
         this.isDone = true;
     }
