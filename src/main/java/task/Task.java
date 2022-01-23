@@ -1,4 +1,4 @@
-package duke;
+package task;
 
 public abstract class Task {
     protected String description;
@@ -17,5 +17,9 @@ public abstract class Task {
 
     public void unmarkAsDone() {
         this.isDone = false;
+    }
+
+    public boolean isDone() {
+        return isDone;
     }
 }

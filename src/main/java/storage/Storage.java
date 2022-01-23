@@ -1,4 +1,7 @@
-package duke;
+package storage;
+
+import duke.DukeException;
+import task.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,7 +10,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Storage {
+public class Storage implements IStorage{
     private final String saveFilePath;
 
     public Storage(String saveFileDirectory, String saveFileName) throws DukeException {

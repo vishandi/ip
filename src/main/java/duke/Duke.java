@@ -1,7 +1,14 @@
 package duke;
 
+import parser.Parser;
+import storage.IStorage;
+import storage.Storage;
+import task.Task;
+import task.TaskList;
+import ui.Ui;
+
 public class Duke {
-    public final Storage storage;
+    public final IStorage storage;
     public TaskList taskList;
     public Ui ui;
     public Parser parser;
@@ -12,6 +19,14 @@ public class Duke {
         this.ui = new Ui();
         this.parser = new Parser();
     }
+
+    public Duke(IStorage storage) {
+        this.storage = storage;
+        this.taskList = new TaskList();
+        this.ui = new Ui();
+        this.parser = new Parser();
+    }
+
     public static void main(String[] args) throws DukeException {
         try {
             Duke duke = new Duke("./data/", "TaskList.txt");
