@@ -1,4 +1,11 @@
-package duke;
+package parser;
+
+import duke.DukeException;
+import ui.Ui;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
 
 import java.time.LocalDate;
 
@@ -6,10 +13,20 @@ public class Parser {
     private final Ui ui;
     private static final String[] COMMANDS = new String[] {"todo", "deadline", "event"};
 
+    /**
+     * Constructor for Parser.
+     */
     public Parser() {
         this.ui = new Ui();
     }
 
+    /**
+     * Making sense of user input
+     * @param command
+     * @param userInput
+     * @return Task
+     * @throws DukeException
+     */
     public Task parseFromUi(String command, String userInput) throws DukeException {
         switch (command) {
         case "todo":

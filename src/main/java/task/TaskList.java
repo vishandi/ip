@@ -1,4 +1,6 @@
-package duke;
+package task;
+
+import task.Task;
 
 import java.util.ArrayList;
 
@@ -11,6 +13,10 @@ public class TaskList {
 
     public ArrayList<Task> getTasks() {
         return this.taskList;
+    }
+
+    public Task getTaskAtIndex(int index) throws IndexOutOfBoundsException {
+        return this.taskList.get(index);
     }
 
     public void markTaskAsDone(int index) throws IndexOutOfBoundsException {

@@ -1,4 +1,11 @@
-package duke;
+package storage;
+
+import duke.DukeException;
+import task.TaskList;
+import task.Deadline;
+import task.Event;
+import task.Task;
+import task.Todo;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -7,9 +14,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Storage {
+public class Storage implements IStorage {
     private final String saveFilePath;
 
+    /**
+     * Constructor for Storage.
+     * @param saveFileDirectory
+     * @param saveFileName
+     * @throws DukeException
+     */
     public Storage(String saveFileDirectory, String saveFileName) throws DukeException {
         this.saveFilePath = saveFileDirectory + saveFileName;
         File fileDirectory = new File(saveFileDirectory);
@@ -27,6 +40,11 @@ public class Storage {
         }
     }
 
+    /**
+     * Read tasks from file.
+     * @return TaskList
+     * @throws DukeException
+     */
     public TaskList readFile() throws DukeException {
         TaskList taskList = new TaskList();
         File file = new File(saveFilePath);
@@ -44,6 +62,11 @@ public class Storage {
         return taskList;
     }
 
+    /**
+     * Write tasks to the file.
+     * @param taskList
+     * @throws DukeException
+     */
     public void writeToFile(TaskList taskList) throws DukeException {
         StringBuilder msg = new StringBuilder();
         for (Task task : taskList.getTasks()) {
@@ -58,6 +81,12 @@ public class Storage {
         }
     }
 
+    /**
+     * Processes saved tasks from the file.
+     * @param line
+     * @return Task
+     * @throws DukeException
+     */
     public Task processLine(String line) throws DukeException { //can add exception when handling the lines for possible corrupted file
         String[] description = line.split(" / ");
         try {
