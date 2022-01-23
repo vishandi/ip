@@ -1,120 +1,120 @@
-import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Scanner;
-
 public class Duke {
-    private static final String[] COMMANDS = new String[] {"mark", "unmark", "todo", "deadline", "event", "delete"};
-    public static String SAVE_FILE_PATH = "./data/";
-    public static String SAVE_FILE_NAME = "TaskList.txt";
-    private static final TaskList TASK_LIST = new TaskList(SAVE_FILE_PATH, SAVE_FILE_NAME);
+    public final Storage storage;
+    public TaskList taskList;
+    public Ui ui;
+    public Parser parser;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-
-        initialize();
-
-        while (true) {
-            String userInput = sc.nextLine();
-
-            if (userInput.equals("bye")) {
-                bye();
-                break;
-            }
-            processUserInput(userInput);
+    public Duke(String saveFileDirectory, String saveFileName) throws DukeException {
+        this.storage = new Storage(saveFileDirectory, saveFileName);
+        this.taskList = new TaskList();
+        this.ui = new Ui();
+        this.parser = new Parser();
+    }
+    public static void main(String[] args) throws DukeException {
+        try {
+            Duke duke = new Duke("./data/", "TaskList.txt");
+            duke.initialize();
+            duke.run();
+        } catch (DukeException d) {
+            throw d;
         }
     }
 
-    public static void initialize() {
-        System.out.println("Hello! I'm Dr.Kafka!");
-        System.out.println("What can I do for you?");
-        TASK_LIST.readFile();
+    public void initialize() throws DukeException {
+        this.ui.greet();
+        this.taskList = storage.readFile();
+        this.printTasks();
     }
 
-    public static void bye() {
-        System.out.println("Bye. Hope to see you again soon!");
+    public void run() {
+        while (true) {
+            String userInput = this.ui.readUserInput();
+            if (!processUserInput(userInput)) {
+                break;
+            }
+        }
     }
 
-    public static void processUserInput(String userInput) {
-        if (userInput.equals("list")) {
-            System.out.println(TASK_LIST);
-        } else {
-            String[] userInputs = userInput.split(" ");
-            String command = userInputs[0];
-            try {
-                if (Arrays.stream(COMMANDS).noneMatch(command::equals)) {
-                    throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :(");
+    public void bye() {
+        this.ui.bye();
+    }
+
+    public void printTasks() {
+        this.ui.printMessage(this.taskList.toString());
+    }
+
+    public void writeTasks() throws DukeException {
+        this.storage.writeToFile(this.taskList);
+    }
+
+    public boolean processUserInput(String userInput) {
+        String[] userInputs = userInput.split(" ");
+        String command = userInputs[0];
+        try {
+            switch (command) {
+            case "bye":
+                if (userInput.equals("bye")) {
+                    bye();
+                    return false;
+                } else {
+                    throw DukeException.DukeInvalidCommand();
                 }
-                switch (command) {
-                case "mark":
-                    try {
-                        int index = Integer.parseInt(userInput.substring(5)) - 1;
-                        TASK_LIST.markTaskAsDone(index);
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("Sorry, I don't understand which task should I mark as done :(");
-                    } catch (IndexOutOfBoundsException e) {
-                        int index = Integer.parseInt(userInput.substring(5)) - 1;
-                        throw new DukeException(String.format("Sorry, there is no no.%d task", index));
-                    }
-                    break;
+            case "list":
+                if (userInput.equals("list")) {
+                    printTasks();
+                    return true;
+                } else {
+                    throw DukeException.DukeInvalidCommand();
+                }
+            case "mark":
+                try {
+                    int index = Integer.parseInt(userInput.substring(5)) - 1;
+                    this.taskList.markTaskAsDone(index);
+                    writeTasks();
+                    return true;
+                } catch (NumberFormatException e) {
+                    throw DukeException.DukeInvalidIndex();
+                } catch (IndexOutOfBoundsException e) {
+                    throw DukeException.DukeInvalidIndex();
+                } catch (DukeException d) {
+                    throw d;
+                }
 
-                case "unmark":
-                    try {
-                        int index = Integer.parseInt(userInput.substring(7)) - 1;
-                        TASK_LIST.unmarkTaskAsDone(index);
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("Sorry, I don't understand which task should I unmark as done :(");
-                    } catch (IndexOutOfBoundsException e) {
-                        int index = Integer.parseInt(userInput.substring(7)) - 1;
-                        throw new DukeException(String.format("Sorry, there is no no.%d task", index));
-                    }
-                    break;
+            case "unmark":
+                try {
+                    int index = Integer.parseInt(userInput.substring(7)) - 1;
+                    this.taskList.unmarkTaskAsDone(index);
+                    writeTasks();
+                    return true;
+                } catch (NumberFormatException e) {
+                    throw DukeException.DukeInvalidIndex();
+                } catch (IndexOutOfBoundsException e) {
+                    throw DukeException.DukeInvalidIndex();
+                } catch (DukeException d) {
+                    throw d;
+                }
 
-                case "delete":
-                    try {
-                        int index = Integer.parseInt(userInput.substring(7)) - 1;
-                        TASK_LIST.deleteTaskAtIndex(index);
-                    } catch (NumberFormatException e) {
-                        throw new DukeException("Sorry, I don't understand which task should I delete :(");
-                    } catch (IndexOutOfBoundsException e) {
-                        int index = Integer.parseInt(userInput.substring(7)) - 1;
-                        throw new DukeException(String.format("Sorry, there is no no.%d task", index));
-                    }
-                    break;
+            case "delete":
+                try {
+                    int index = Integer.parseInt(userInput.substring(7)) - 1;
+                    this.taskList.deleteTaskAtIndex(index);
+                    return true;
+                } catch (IndexOutOfBoundsException e) {
+                    throw DukeException.DukeInvalidIndex();
+                }
 
-                case "todo":
-                    try {
-                        String description = userInput.split(" ", 2)[1];
-                        TASK_LIST.addTask(new Todo(description));
-                    } catch (IndexOutOfBoundsException e) {
-                        throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
-                    }
-                    break;
-
-                 case "deadline":
-                     try {
-                         String[] descriptionAndTime = userInput.substring(9).split(" /by ");
-                         String description = descriptionAndTime[0];
-                         LocalDate deadlineTime = LocalDate.parse(descriptionAndTime[1].trim());
-                         TASK_LIST.addTask(new Deadline(description, deadlineTime));
-                     } catch (Exception e) {
-                         throw new DukeException("OOPS!!! I don't understand your command :(");
-                     }
-                     break;
-
-                 case "event":
-                     try {
-                         String[] descriptionAndTime = userInput.substring(6).split(" /at ");
-                         String description = descriptionAndTime[0];
-                         LocalDate eventTime = LocalDate.parse(descriptionAndTime[1].trim());
-                         TASK_LIST.addTask(new Event(description, eventTime));
-                     } catch (Exception e) {
-                         throw new DukeException("OOPS!!! I don't understand your command :(");
-                     }
-                     break;
-                 }
-             } catch (DukeException d) {
-                 System.out.println(d.getMessage());
+            default:
+                try {
+                    Task task = this.parser.parseFromUi(command, userInput);
+                    this.taskList.addTask(task);
+                    return true;
+                } catch (DukeException d) {
+                    throw d;
+                }
              }
-         }
+        } catch (DukeException d) {
+             this.ui.printErrorMessage(d);
+             return true;
+        }
     }
 }
