@@ -1,5 +1,7 @@
 package task;
 
+import task.Task;
+
 import java.util.ArrayList;
 
 public class TaskList {
@@ -13,8 +15,8 @@ public class TaskList {
         return this.tasks;
     }
 
-    public Task getTaskAtIndex(int index) {
-        return this.tasks.get(index);
+    public Task getTaskAtIndex(int index) throws IndexOutOfBoundsException {
+        return this.taskList.get(index);
     }
 
     public void markTaskAsDone(int index) throws IndexOutOfBoundsException {
