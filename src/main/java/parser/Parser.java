@@ -64,6 +64,13 @@ public class Parser {
         }
     }
 
+    /**
+     * Finds tasks that match the keyword.
+     * @param userInput
+     * @param tasks
+     * @return ArrayList\<Task\> of all tasks that match the keyword
+     * @throws DukeException
+     */
     public ArrayList<Task> findTasksByKeyword(String userInput, ArrayList<Task> tasks) throws DukeException {
         try {
             String keyword = userInput.split(" ", 2)[1];

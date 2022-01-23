@@ -42,6 +42,10 @@ public abstract class Task {
         return isDone;
     }
 
+    /**
+     * Getter function for the task's description.
+     * @return description of the task.
+     */
     public String getDescription() {
         return this.description;
     }

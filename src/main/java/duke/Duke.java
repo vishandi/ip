@@ -73,6 +73,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Says goodbye to user.
+     */
     public void sayGoodbye() {
         this.ui.sayGoodbye();
     }
