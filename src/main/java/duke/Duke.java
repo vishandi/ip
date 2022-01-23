@@ -52,8 +52,8 @@ public class Duke {
         }
     }
 
-    public void bye() {
-        this.ui.bye();
+    public void sayGoodbye() {
+        this.ui.sayGoodbye();
     }
 
     public void printTasks() {
@@ -71,7 +71,7 @@ public class Duke {
             switch (command) {
             case "bye":
                 if (userInput.equals("bye")) {
-                    bye();
+                    sayGoodbye();
                     return false;
                 } else {
                     throw DukeException.DukeInvalidCommand();
