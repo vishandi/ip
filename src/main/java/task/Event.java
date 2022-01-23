@@ -42,9 +42,11 @@ public class Event extends Task {
     @Override
     public String toString() {
         if (this.isDone) {
-            return String.format("[E][X] %s (at: %s)", this.description, this.eventTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            return String.format("[E][X] %s (at: %s)", this.description,
+                    this.eventTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
         } else {
-            return String.format("[E][ ] %s (at: %s)", this.description, this.eventTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            return String.format("[E][ ] %s (at: %s)", this.description,
+                    this.eventTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
         }
     }
 }

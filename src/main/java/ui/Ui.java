@@ -49,7 +49,7 @@ public class Ui {
     /**
      * Says goodbye to the user.
      */
-    public void bye() {
+    public void sayGoodbye() {
         System.out.println("Bye. Hope to see you again soon!");
     }
 }

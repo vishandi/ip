@@ -18,36 +18,45 @@ public class TaskListTest {
     }
 
     @Test
-    public void addTask_successful() {
+    public void addTask_validInput_addedSuccessfully() {
         testTaskList.addTask(new Todo("test"));
-        Assertions.assertEquals(2, testTaskList.getTasks().size());
+        Assertions.assertEquals(2,
+                testTaskList.getTasks()
+                        .size());
     }
 
     @Test
-    public void markTaskAsDone_successful() {
+    public void markTaskAsDone_validIndex_markedSuccessfully() {
         try {
             testTaskList.markTaskAsDone(0);
-            Assertions.assertEquals(true, testTaskList.getTaskAtIndex(0).isDone());
+            Assertions.assertEquals(true,
+                    testTaskList.getTaskAtIndex(0)
+                            .isDone());
         } catch (Exception e) {
             fail("Should not have thrown any exception");
         }
     }
 
     @Test
-    public void unmarkTaskAsDone_successful() {
+    public void unmarkTaskAsDone_validIndex_unmarkedSuccessfully() {
         try {
+            testTaskList.markTaskAsDone(0);
             testTaskList.unmarkTaskAsDone(0);
-            Assertions.assertEquals(false, testTaskList.getTaskAtIndex(0).isDone());
+            Assertions.assertEquals(false,
+                    testTaskList.getTaskAtIndex(0)
+                            .isDone());
         } catch (Exception e) {
             fail("Should not have thrown any exception");
         }
     }
 
     @Test
-    public void deleteTaskAtIndex_successful() {
+    public void deleteTaskAtIndex_validIndex_deletedSuccessfully() {
         try {
             testTaskList.deleteTaskAtIndex(0);
-            Assertions.assertEquals(0, testTaskList.getTasks().size());
+            Assertions.assertEquals(0,
+                    testTaskList.getTasks()
+                            .size());
         } catch (Exception e) {
             fail("Should not have thrown any exception");
         }
