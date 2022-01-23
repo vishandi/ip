@@ -2,14 +2,27 @@ package task;
 
 public class Todo extends Task {
 
+    /**
+     * Constructor for Todo Task.
+     * @param description
+     * @param isDone
+     */
     public Todo(String description, boolean isDone) {
         super(description, isDone);
     }
 
+    /**
+     * Another constructor for Todo Task.
+     * @param description
+     */
     public Todo(String description) {
         this(description, false);
     }
 
+    /**
+     * Get the saved message corresponding to this task.
+     * @return save message for the task.
+     */
     @Override
     public String getSaveMessage() {
         if (this.isDone) {

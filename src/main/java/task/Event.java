@@ -6,15 +6,30 @@ import java.time.format.DateTimeFormatter;
 public class Event extends Task {
     protected LocalDate eventTime;
 
+    /**
+     * Constructor for Event.
+     * @param description
+     * @param isDone
+     * @param eventTime
+     */
     public Event(String description, boolean isDone, LocalDate eventTime) {
         super(description, isDone);
         this.eventTime = eventTime;
     }
 
+    /**
+     * Another constructor for Event.
+     * @param description
+     * @param eventTime
+     */
     public Event(String description, LocalDate eventTime) {
         this(description, false, eventTime);
     }
 
+    /**
+     * Get the saved message corresponding to this task.
+     * @return save message for the task.
+     */
     @Override
     public String getSaveMessage() {
         if (this.isDone) {
