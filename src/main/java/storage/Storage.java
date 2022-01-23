@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-public class Storage implements IStorage {
+public class Storage implements IStorage{
     private final String saveFilePath;
 
     /**
