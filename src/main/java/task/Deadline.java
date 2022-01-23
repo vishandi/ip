@@ -6,15 +6,30 @@ import java.time.format.DateTimeFormatter;
 public class Deadline extends Task {
     protected LocalDate deadlineTime;
 
+    /**
+     * Constructor for Deadline.
+     * @param description
+     * @param isDone
+     * @param deadlineTime
+     */
     public Deadline(String description, boolean isDone, LocalDate deadlineTime) {
         super(description, isDone);
         this.deadlineTime = deadlineTime;
     }
 
+    /**
+     * Another constructor for Deadline.
+     * @param description
+     * @param DeadlineTime
+     */
     public Deadline(String description, LocalDate DeadlineTime) {
         this(description, false, DeadlineTime);
     }
 
+    /**
+     * Get the saved message corresponding to this task.
+     * @return save message for the task.
+     */
     @Override
     public String getSaveMessage() {
         if (this.isDone) {
@@ -27,9 +42,11 @@ public class Deadline extends Task {
     @Override
     public String toString() {
         if (this.isDone) {
-            return String.format("[D][X] %s (by: %s)", this.description, this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            return String.format("[D][X] %s (by: %s)", this.description,
+                    this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
         } else {
-            return String.format("[D][ ] %s (by: %s)", this.description, this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            return String.format("[D][ ] %s (by: %s)", this.description,
+                    this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
         }
     }
 }

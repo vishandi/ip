@@ -18,7 +18,7 @@ public class DukeTest {
     }
 
     @Test
-    public void initialize_success() {
+    public void initialize_valid_success() {
         try {
             duke.initialize();
         } catch (Exception e) {
@@ -27,16 +27,16 @@ public class DukeTest {
     }
 
     @Test
-    public void bye_success() {
+    public void sayGoodbye_valid_success() {
         try {
-            duke.bye();
+            duke.sayGoodbye();
         } catch (Exception e) {
             fail("Should not have thrown any exception");
         }
     }
 
     @Test
-    public void processUiBye_success() {
+    public void processUserInput_byeInput_sayGoodbye() {
         boolean result = duke.processUserInput("bye");
         Assertions.assertEquals(false, result);
     }
