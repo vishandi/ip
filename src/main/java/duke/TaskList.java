@@ -1,10 +1,6 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.time.LocalDate;
+package duke;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class TaskList {
     private ArrayList<Task> taskList;
