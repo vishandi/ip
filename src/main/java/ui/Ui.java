@@ -1,7 +1,9 @@
 package ui;
 
 import duke.DukeException;
+import task.Task;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Ui {
@@ -21,6 +23,19 @@ public class Ui {
 
     public void printErrorMessage(DukeException d) {
         System.out.println(d.getMessage());
+    }
+
+    public void printMatchTasks(ArrayList<Task> matchTasks) {
+        if (matchTasks.isEmpty()) {
+            System.out.println("No task matches your keyword :(");
+        } else {
+            System.out.println("Here are the matching tasks in your list:");
+            for (int i = 0; i < matchTasks.size(); i++) {
+                System.out.print(i + 1);
+                System.out.print(". ");
+                System.out.println(matchTasks.get(i).toString());
+            }
+        }
     }
 
     public void greet() {

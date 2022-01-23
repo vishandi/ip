@@ -7,6 +7,8 @@ import task.Task;
 import task.TaskList;
 import ui.Ui;
 
+import java.util.ArrayList;
+
 public class Duke {
     public final IStorage storage;
     public TaskList taskList;
@@ -76,6 +78,7 @@ public class Duke {
                 } else {
                     throw DukeException.DukeInvalidCommand();
                 }
+
             case "list":
                 if (userInput.equals("list")) {
                     printTasks();
@@ -83,6 +86,7 @@ public class Duke {
                 } else {
                     throw DukeException.DukeInvalidCommand();
                 }
+
             case "mark":
                 try {
                     int index = Integer.parseInt(userInput.substring(5)) - 1;
@@ -118,6 +122,16 @@ public class Duke {
                     return true;
                 } catch (IndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidIndex();
+                }
+
+            case "find":
+                try {
+                    ArrayList<Task> matchTasks = this.parser.findTasksByKeyword(userInput,
+                            this.taskList.getTasks());
+                    this.ui.printMatchTasks(matchTasks);
+                    return true;
+                } catch (DukeException d) {
+                    throw d;
                 }
 
             default:

@@ -8,6 +8,7 @@ import task.Todo;
 import ui.Ui;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class Parser {
     private final Ui ui;
@@ -52,4 +53,23 @@ public class Parser {
         }
     }
 
+    public ArrayList<Task> findTasksByKeyword(String userInput, ArrayList<Task> tasks) throws DukeException {
+        try {
+            String keyword = userInput.split(" ", 2)[1];
+            if (keyword.trim().length() == 0) {
+                throw DukeException.DukeInvalidCommand();
+            } else {
+                keyword = keyword.trim();
+            }
+            ArrayList<Task> matchTasks = new ArrayList<>();
+            for (Task task : tasks) {
+                if (task.getDescription().contains(keyword)) {
+                    matchTasks.add(task);
+                }
+            }
+            return matchTasks;
+        } catch (Exception e) {
+            throw DukeException.DukeInvalidCommand();
+        }
+    }
 }
