@@ -36,20 +36,22 @@ public class Ui {
      * Prints error messages.
      * @param d
      */
-    public void printErrorMessage(DukeException d) {
-        System.out.println(d.getMessage());
+    public String getErrorMessage(DukeException d) {
+        return d.getMessage();
     }
 
-    public void printMatchTasks(ArrayList<Task> matchTasks) {
+    public String printMatchTasks(ArrayList<Task> matchTasks) {
         if (matchTasks.isEmpty()) {
-            System.out.println("No task matches your keyword :(");
+            return "No task matches your keyword :(";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < matchTasks.size(); i++) {
-                System.out.print(i + 1);
-                System.out.print(". ");
-                System.out.println(matchTasks.get(i).toString());
+                response.append(String.valueOf(i + 1));
+                response.append(". ");
+                response.append(matchTasks.get(i).toString());
+                response.append("\n");
             }
+            return response.toString();
         }
     }
 

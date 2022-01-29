@@ -37,7 +37,7 @@ public class DukeTest {
 
     @Test
     public void processUserInput_byeInput_sayGoodbye() {
-        boolean result = duke.processUserInput("bye");
-        Assertions.assertEquals(false, result);
+        String result = duke.processUserInput("bye");
+        Assertions.assertEquals("Bye! Hope to see you again!", result);
     }
 }
