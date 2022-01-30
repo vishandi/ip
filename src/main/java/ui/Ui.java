@@ -17,14 +17,6 @@ public class Ui {
     }
 
     /**
-     * Prints message.
-     * @param msg
-     */
-    public void printMessage(String msg) {
-        System.out.println(msg);
-    }
-
-    /**
      * Reads user input and returning the message.
      * @return String
      */
@@ -36,35 +28,22 @@ public class Ui {
      * Prints error messages.
      * @param d
      */
-    public void printErrorMessage(DukeException d) {
-        System.out.println(d.getMessage());
+    public String getErrorMessage(DukeException d) {
+        return d.getMessage();
     }
 
-    public void printMatchTasks(ArrayList<Task> matchTasks) {
+    public String printMatchTasks(ArrayList<Task> matchTasks) {
         if (matchTasks.isEmpty()) {
-            System.out.println("No task matches your keyword :(");
+            return "No task matches your keyword :(";
         } else {
-            System.out.println("Here are the matching tasks in your list:");
+            StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
             for (int i = 0; i < matchTasks.size(); i++) {
-                System.out.print(i + 1);
-                System.out.print(". ");
-                System.out.println(matchTasks.get(i).toString());
+                response.append(String.valueOf(i + 1));
+                response.append(". ");
+                response.append(matchTasks.get(i).toString());
+                response.append("\n");
             }
+            return response.toString();
         }
-    }
-
-    /**
-     * Greets the user.
-     */
-    public void greet() {
-        System.out.println("Hello! I'm Dr.Kafka!");
-        System.out.println("What can I do for you?");
-    }
-
-    /**
-     * Says goodbye to the user.
-     */
-    public void sayGoodbye() {
-        System.out.println("Bye. Hope to see you again soon!");
     }
 }

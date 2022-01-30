@@ -14,6 +14,7 @@ public class Duke {
     public TaskList taskList;
     public Ui ui;
     public Parser parser;
+    private static final String BYE = "Bye! Hope to see you soon!";
 
     /**
      * Constructor for Duke that takes in saveFileDirectory and saveFileName and parsing it to Storage class.
@@ -21,7 +22,7 @@ public class Duke {
      * @param saveFileName
      * @throws DukeException
      */
-    public Duke(String saveFileDirectory, String saveFileName) throws DukeException {
+    public Duke(String saveFileDirectory, String saveFileName) {
         this.storage = new Storage(saveFileDirectory, saveFileName);
         this.taskList = new TaskList();
         this.ui = new Ui();
@@ -56,9 +57,7 @@ public class Duke {
      * @throws DukeException
      */
     public void initialize() throws DukeException {
-        this.ui.greet();
         this.taskList = storage.readFile();
-        this.printTasks();
     }
 
     /**
@@ -67,24 +66,11 @@ public class Duke {
     public void run() {
         while (true) {
             String userInput = this.ui.readUserInput();
-            if (!processUserInput(userInput)) {
+            if (userInput.equals("bye")) {
                 break;
             }
+            System.out.println(processUserInput(userInput));
         }
-    }
-
-    /**
-     * Says goodbye to user.
-     */
-    public void sayGoodbye() {
-        this.ui.sayGoodbye();
-    }
-
-    /**
-     * Method to print all the tasks currently recorded on Duke.
-     */
-    public void printTasks() {
-        this.ui.printMessage(this.taskList.toString());
     }
 
     /**
@@ -100,23 +86,24 @@ public class Duke {
      * @param userInput
      * @return false if bye, true otherwise.
      */
-    public boolean processUserInput(String userInput) {
+    public String processUserInput(String userInput) {
         String[] userInputs = userInput.split(" ");
         String command = userInputs[0];
+        String response;
         try {
             switch (command) {
             case "bye":
                 if (userInput.equals("bye")) {
-                    sayGoodbye();
-                    return false;
+                    response = Duke.BYE;
+                    return response;
                 } else {
                     throw DukeException.DukeInvalidCommand();
                 }
 
             case "list":
                 if (userInput.equals("list")) {
-                    printTasks();
-                    return true;
+                    response = this.taskList.toString();
+                    return response;
                 } else {
                     throw DukeException.DukeInvalidCommand();
                 }
@@ -124,9 +111,9 @@ public class Duke {
             case "mark":
                 try {
                     int index = Integer.parseInt(userInput.substring(5)) - 1;
-                    this.taskList.markTaskAsDone(index);
+                    response = this.taskList.markTaskAsDone(index);
                     writeTasks();
-                    return true;
+                    return response;
                 } catch (NumberFormatException e) {
                     throw DukeException.DukeInvalidIndex();
                 } catch (IndexOutOfBoundsException e) {
@@ -138,9 +125,9 @@ public class Duke {
             case "unmark":
                 try {
                     int index = Integer.parseInt(userInput.substring(7)) - 1;
-                    this.taskList.unmarkTaskAsDone(index);
+                    response = this.taskList.unmarkTaskAsDone(index);
                     writeTasks();
-                    return true;
+                    return response;
                 } catch (NumberFormatException e) {
                     throw DukeException.DukeInvalidIndex();
                 } catch (IndexOutOfBoundsException e) {
@@ -152,8 +139,9 @@ public class Duke {
             case "delete":
                 try {
                     int index = Integer.parseInt(userInput.substring(7)) - 1;
-                    this.taskList.deleteTaskAtIndex(index);
-                    return true;
+                    response = this.taskList.deleteTaskAtIndex(index);
+                    writeTasks();
+                    return response;
                 } catch (IndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidIndex();
                 }
@@ -162,20 +150,21 @@ public class Duke {
                 try {
                     ArrayList<Task> matchTasks = this.parser.findTasksByKeyword(userInput,
                             this.taskList.getTasks());
-                    this.ui.printMatchTasks(matchTasks);
-                    return true;
+                    response = this.ui.printMatchTasks(matchTasks);
+                    return response;
                 } catch (DukeException d) {
                     throw d;
                 }
 
             default:
                 Task task = this.parser.parseFromUi(command, userInput);
-                this.taskList.addTask(task);
-                return true;
+                response = this.taskList.addTask(task);
+                writeTasks();
+                return response;
             }
         } catch (DukeException d) {
-             this.ui.printErrorMessage(d);
-             return true;
+             response = this.ui.getErrorMessage(d);
+             return response;
         }
     }
 }

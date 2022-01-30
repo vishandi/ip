@@ -23,7 +23,7 @@ public class Storage implements IStorage{
      * @param saveFileName
      * @throws DukeException
      */
-    public Storage(String saveFileDirectory, String saveFileName) throws DukeException {
+    public Storage(String saveFileDirectory, String saveFileName) {
         this.saveFilePath = saveFileDirectory + saveFileName;
         File fileDirectory = new File(saveFileDirectory);
         if (!fileDirectory.exists()) {
@@ -35,7 +35,7 @@ public class Storage implements IStorage{
             try {
                 saveFile.createNewFile();
             } catch (IOException e) {
-                throw DukeException.DukeIOException();
+                System.out.println(e);
             }
         }
     }

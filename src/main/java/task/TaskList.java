@@ -1,7 +1,5 @@
 package task;
 
-import task.Task;
-
 import java.util.ArrayList;
 
 public class TaskList {
@@ -37,10 +35,11 @@ public class TaskList {
      * @param index
      * @throws IndexOutOfBoundsException
      */
-    public void markTaskAsDone(int index) throws IndexOutOfBoundsException {
+    public String markTaskAsDone(int index) throws IndexOutOfBoundsException {
         this.tasks.get(index).markAsDone();
-        System.out.println("Nice! I've marked this task as done:");
-        System.out.println(tasks.get(index));
+        return String.format("%s \n %s \n",
+                "Nice! I've marked this task as done:",
+                tasks.get(index));
     }
 
     /**
@@ -48,34 +47,41 @@ public class TaskList {
      * @param index
      * @throws IndexOutOfBoundsException
      */
-    public void unmarkTaskAsDone(int index) throws IndexOutOfBoundsException {
+    public String unmarkTaskAsDone(int index) throws IndexOutOfBoundsException {
         this.tasks.get(index).unmarkAsDone();
-        System.out.println("OK, I've marked this task as not done yet:");
-        System.out.println(tasks.get(index));
+        return String.format("%s \n %s \n",
+                "Nice! I've unmarked this task as done:",
+                tasks.get(index));
     }
 
     /**
      * Deletes task at specified index.
      * @param index
      * @throws IndexOutOfBoundsException
+     * @return
      */
-    public void deleteTaskAtIndex(int index) throws IndexOutOfBoundsException {
+    public String deleteTaskAtIndex(int index) throws IndexOutOfBoundsException {
         Task deleted = this.tasks.get(index);
         System.out.println("Noted. I've removed this task:");
         System.out.println(deleted);
         this.tasks.remove(index);
-        System.out.printf("Now you have %s tasks in the list.\n", this.tasks.size());
+        return String.format("%s \n %s \n %s \n",
+                "Noted. I've removed this task:",
+                deleted.toString(),
+                String.format("Now you have %s tasks in the list.", this.tasks.size()));
+
     }
 
     /**
      * Add specified task to the list.
      * @param task
      */
-    public void addTask(Task task) {
+    public String addTask(Task task) {
         this.tasks.add(task);
-        System.out.println("Got it. I've added this task:");
-        System.out.println(tasks.get(tasks.size() - 1));
-        System.out.printf("Now you have %s tasks in the list.\n", tasks.size());
+        return String.format("%s \n%s \n%s",
+                "Got it. I've added this task:",
+                tasks.get(tasks.size() - 1).toString(),
+                String.format("Now you have %s tasks in the list.", tasks.size()));
     }
 
     /**

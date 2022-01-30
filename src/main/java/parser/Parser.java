@@ -1,5 +1,6 @@
 package parser;
 
+import duke.Duke;
 import duke.DukeException;
 import ui.Ui;
 
@@ -34,8 +35,14 @@ public class Parser {
         case "todo":
             try {
                 String description = userInput.split(" ", 2)[1];
+                description = description.trim();
+                if (description.equals("")) {
+                    throw DukeException.DukeTodoEmpty();
+                }
                 return new Todo(description);
             } catch (IndexOutOfBoundsException e) {
+                throw DukeException.DukeTodoEmpty();
+            } catch (DukeException d) {
                 throw DukeException.DukeTodoEmpty();
             }
 
