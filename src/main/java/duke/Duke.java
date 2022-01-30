@@ -57,9 +57,7 @@ public class Duke {
      * @throws DukeException
      */
     public void initialize() throws DukeException {
-        this.ui.greet();
         this.taskList = storage.readFile();
-        this.printTasks();
     }
 
     /**
@@ -73,20 +71,6 @@ public class Duke {
             }
             System.out.println(processUserInput(userInput));
         }
-    }
-
-    /**
-     * Says goodbye to user.
-     */
-    public void sayGoodbye() {
-        this.ui.sayGoodbye();
-    }
-
-    /**
-     * Method to print all the tasks currently recorded on Duke.
-     */
-    public void printTasks() {
-        this.ui.printMessage(this.taskList.toString());
     }
 
     /**
@@ -110,7 +94,6 @@ public class Duke {
             switch (command) {
             case "bye":
                 if (userInput.equals("bye")) {
-                    sayGoodbye();
                     response = Duke.BYE;
                     return response;
                 } else {
