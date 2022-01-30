@@ -22,7 +22,7 @@ public class Duke {
      * @param saveFileName
      * @throws DukeException
      */
-    public Duke(String saveFileDirectory, String saveFileName) throws DukeException {
+    public Duke(String saveFileDirectory, String saveFileName) {
         this.storage = new Storage(saveFileDirectory, saveFileName);
         this.taskList = new TaskList();
         this.ui = new Ui();
@@ -71,6 +71,7 @@ public class Duke {
             if (userInput.equals("bye")) {
                 break;
             }
+            System.out.println(processUserInput(userInput));
         }
     }
 
@@ -111,6 +112,7 @@ public class Duke {
                 if (userInput.equals("bye")) {
                     sayGoodbye();
                     response = Duke.BYE;
+                    return response;
                 } else {
                     throw DukeException.DukeInvalidCommand();
                 }
@@ -118,6 +120,7 @@ public class Duke {
             case "list":
                 if (userInput.equals("list")) {
                     response = this.taskList.toString();
+                    return response;
                 } else {
                     throw DukeException.DukeInvalidCommand();
                 }
@@ -127,6 +130,7 @@ public class Duke {
                     int index = Integer.parseInt(userInput.substring(5)) - 1;
                     response = this.taskList.markTaskAsDone(index);
                     writeTasks();
+                    return response;
                 } catch (NumberFormatException e) {
                     throw DukeException.DukeInvalidIndex();
                 } catch (IndexOutOfBoundsException e) {
@@ -140,6 +144,7 @@ public class Duke {
                     int index = Integer.parseInt(userInput.substring(7)) - 1;
                     response = this.taskList.unmarkTaskAsDone(index);
                     writeTasks();
+                    return response;
                 } catch (NumberFormatException e) {
                     throw DukeException.DukeInvalidIndex();
                 } catch (IndexOutOfBoundsException e) {
@@ -152,6 +157,8 @@ public class Duke {
                 try {
                     int index = Integer.parseInt(userInput.substring(7)) - 1;
                     response = this.taskList.deleteTaskAtIndex(index);
+                    writeTasks();
+                    return response;
                 } catch (IndexOutOfBoundsException e) {
                     throw DukeException.DukeInvalidIndex();
                 }
@@ -161,6 +168,7 @@ public class Duke {
                     ArrayList<Task> matchTasks = this.parser.findTasksByKeyword(userInput,
                             this.taskList.getTasks());
                     response = this.ui.printMatchTasks(matchTasks);
+                    return response;
                 } catch (DukeException d) {
                     throw d;
                 }
@@ -168,11 +176,12 @@ public class Duke {
             default:
                 Task task = this.parser.parseFromUi(command, userInput);
                 response = this.taskList.addTask(task);
+                writeTasks();
+                return response;
             }
         } catch (DukeException d) {
              response = this.ui.getErrorMessage(d);
              return response;
         }
-        return response;
     }
 }

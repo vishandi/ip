@@ -78,9 +78,9 @@ public class TaskList {
      */
     public String addTask(Task task) {
         this.tasks.add(task);
-        return String.format("%s \n %d \n %s \n",
+        return String.format("%s \n%s \n%s",
                 "Got it. I've added this task:",
-                tasks.get(tasks.size() - 1),
+                tasks.get(tasks.size() - 1).toString(),
                 String.format("Now you have %s tasks in the list.", tasks.size()));
     }
 
