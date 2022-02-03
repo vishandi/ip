@@ -14,13 +14,16 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Scanner;
 
+/**
+ * Storage class to store and writes tasks from file.
+ */
 public class Storage implements IStorage{
     private final String saveFilePath;
 
     /**
      * Constructor for Storage.
-     * @param saveFileDirectory
-     * @param saveFileName
+     * @param saveFileDirectory directory for save file.
+     * @param saveFileName name of the save file.
      * @throws DukeException
      */
     public Storage(String saveFileDirectory, String saveFileName) {
@@ -42,7 +45,7 @@ public class Storage implements IStorage{
 
     /**
      * Read tasks from file.
-     * @return TaskList
+     * @return TaskList tasks parsed from the file.
      * @throws DukeException
      */
     public TaskList readFile() throws DukeException {
@@ -64,7 +67,7 @@ public class Storage implements IStorage{
 
     /**
      * Write tasks to the file.
-     * @param taskList
+     * @param taskList tasks that are supposed to be written to the file.
      * @throws DukeException
      */
     public void writeToFile(TaskList taskList) throws DukeException {
@@ -83,8 +86,8 @@ public class Storage implements IStorage{
 
     /**
      * Processes saved tasks from the file.
-     * @param line
-     * @return Task
+     * @param line each line from the file.
+     * @return Task task corresponding to the line.
      * @throws DukeException
      */
     public Task processLine(String line) throws DukeException { //can add exception when handling the lines for possible corrupted file

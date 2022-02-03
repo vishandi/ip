@@ -1,5 +1,8 @@
 package task;
 
+/**
+ * Todo type of task
+ */
 public class Todo extends Task {
 
     /**

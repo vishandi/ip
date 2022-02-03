@@ -1,13 +1,16 @@
 package task;
 
+/**
+ * Abstract class for tasks.
+ */
 public abstract class Task {
     protected String description;
     protected boolean isDone;
 
     /**
      * Constructor for Task.
-     * @param description
-     * @param isDone
+     * @param description the description of the task
+     * @param isDone the status of the task
      */
     protected Task(String description, boolean isDone) {
         this.description = description;
@@ -16,7 +19,7 @@ public abstract class Task {
 
     /**
      * Gets String that corresponds to the Task to be saved.
-     * @return String
+     * @return String save message for the task.
      */
     public abstract String getSaveMessage();
 

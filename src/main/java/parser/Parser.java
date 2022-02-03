@@ -12,6 +12,10 @@ import task.Todo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * Parser class.
+ * To make sense what the user is commanding.
+ */
 public class Parser {
     private final Ui ui;
     private static final String[] COMMANDS = new String[] {"todo", "deadline", "event"};
@@ -24,10 +28,10 @@ public class Parser {
     }
 
     /**
-     * Making sense of user input
-     * @param command
-     * @param userInput
-     * @return Task
+     * Parses the user input.
+     * @param command what command is the user inputting.
+     * @param userInput the full user input.
+     * @return Task corresponding to the user input.
      * @throws DukeException
      */
     public Task parseFromUi(String command, String userInput) throws DukeException {
@@ -73,9 +77,9 @@ public class Parser {
 
     /**
      * Finds tasks that match the keyword.
-     * @param userInput
-     * @param tasks
-     * @return ArrayList\<Task\> of all tasks that match the keyword
+     * @param userInput the full user input.
+     * @param tasks list of tasks that we want to match.
+     * @return ArrayList\<Task\> of all tasks that match the keyword.
      * @throws DukeException
      */
     public ArrayList<Task> findTasksByKeyword(String userInput, ArrayList<Task> tasks) throws DukeException {

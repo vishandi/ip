@@ -3,14 +3,17 @@ package task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Deadline type of task.
+ */
 public class Deadline extends Task {
     protected LocalDate deadlineTime;
 
     /**
      * Constructor for Deadline.
-     * @param description
-     * @param isDone
-     * @param deadlineTime
+     * @param description the description for the task.
+     * @param isDone status of the task.
+     * @param deadlineTime deadline time for the task.
      */
     public Deadline(String description, boolean isDone, LocalDate deadlineTime) {
         super(description, isDone);
@@ -19,8 +22,8 @@ public class Deadline extends Task {
 
     /**
      * Another constructor for Deadline.
-     * @param description
-     * @param DeadlineTime
+     * @param description the description for the task.
+     * @param DeadlineTime deadline time for the task.
      */
     public Deadline(String description, LocalDate DeadlineTime) {
         this(description, false, DeadlineTime);
