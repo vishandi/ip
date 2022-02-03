@@ -39,7 +39,7 @@ public class Ui {
     /**
      * Gets the string version of matching tasks.
      * @param matchTasks
-     * @return the string version of matching tasks. 
+     * @return the string version of matching tasks.
      */
     public String getMatchingTasks(ArrayList<Task> matchTasks) {
         if (matchTasks.isEmpty()) {
