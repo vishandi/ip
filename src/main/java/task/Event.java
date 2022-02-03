@@ -3,14 +3,17 @@ package task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Event type of task.
+ */
 public class Event extends Task {
     protected LocalDate eventTime;
 
     /**
      * Constructor for Event.
-     * @param description
-     * @param isDone
-     * @param eventTime
+     * @param description the description for the task.
+     * @param isDone status of the task.
+     * @param eventTime event time of the task.
      */
     public Event(String description, boolean isDone, LocalDate eventTime) {
         super(description, isDone);
@@ -19,8 +22,8 @@ public class Event extends Task {
 
     /**
      * Another constructor for Event.
-     * @param description
-     * @param eventTime
+     * @param description the description for the task.
+     * @param eventTime status of the task.
      */
     public Event(String description, LocalDate eventTime) {
         this(description, false, eventTime);

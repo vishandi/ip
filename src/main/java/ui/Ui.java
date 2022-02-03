@@ -6,6 +6,9 @@ import task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Class for printing and scanning input from user.
+ */
 public class Ui {
     private final Scanner sc;
 
@@ -17,22 +20,28 @@ public class Ui {
     }
 
     /**
-     * Reads user input and returning the message.
-     * @return String
+     * Reads user input and returns the message.
+     * @return String of the user input.
      */
     public String readUserInput() {
         return this.sc.nextLine();
     }
 
     /**
-     * Prints error messages.
-     * @param d
+     * Gets error message from a exception.
+     * @param d exception.
+     * @return the message of d.
      */
     public String getErrorMessage(DukeException d) {
         return d.getMessage();
     }
 
-    public String printMatchTasks(ArrayList<Task> matchTasks) {
+    /**
+     * Gets the string version of matching tasks.
+     * @param matchTasks
+     * @return the string version of matching tasks. 
+     */
+    public String getMatchingTasks(ArrayList<Task> matchTasks) {
         if (matchTasks.isEmpty()) {
             return "No task matches your keyword :(";
         } else {
@@ -45,5 +54,13 @@ public class Ui {
             }
             return response.toString();
         }
+    }
+
+    /**
+     * Print messages from input.
+     * @param message message that is supposed to be printed.
+     */
+    public void printMessage(String message) {
+        System.out.println(message);
     }
 }

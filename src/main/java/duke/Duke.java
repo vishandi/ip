@@ -9,6 +9,10 @@ import ui.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Constructor for Duke class.
+ * Main logic for Duke.
+ */
 public class Duke {
     public final IStorage storage;
     public TaskList taskList;
@@ -18,9 +22,8 @@ public class Duke {
 
     /**
      * Constructor for Duke that takes in saveFileDirectory and saveFileName and parsing it to Storage class.
-     * @param saveFileDirectory
-     * @param saveFileName
-     * @throws DukeException
+     * @param saveFileDirectory save file directory for recorded tasks.
+     * @param saveFileName save file name of the recorded tasks.
      */
     public Duke(String saveFileDirectory, String saveFileName) {
         this.storage = new Storage(saveFileDirectory, saveFileName);
@@ -31,7 +34,7 @@ public class Duke {
 
     /**
      * Another constructor for Duke which directly parse the input to storage attribute.
-     * @param storage
+     * @param storage any object of IStorage class.
      */
     public Duke(IStorage storage) {
         this.storage = storage;
@@ -69,7 +72,7 @@ public class Duke {
             if (userInput.equals("bye")) {
                 break;
             }
-            System.out.println(processUserInput(userInput));
+            ui.printMessage(processUserInput(userInput));
         }
     }
 
@@ -83,8 +86,8 @@ public class Duke {
 
     /**
      * Method to process user input and get what it means.
-     * @param userInput
-     * @return false if bye, true otherwise.
+     * @param userInput user input in form of String.
+     * @return response from the logic.
      */
     public String processUserInput(String userInput) {
         String[] userInputs = userInput.split(" ");
@@ -150,7 +153,7 @@ public class Duke {
                 try {
                     ArrayList<Task> matchTasks = this.parser.findTasksByKeyword(userInput,
                             this.taskList.getTasks());
-                    response = this.ui.printMatchTasks(matchTasks);
+                    response = this.ui.getMatchingTasks(matchTasks);
                     return response;
                 } catch (DukeException d) {
                     throw d;

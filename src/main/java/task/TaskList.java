@@ -2,6 +2,9 @@ package task;
 
 import java.util.ArrayList;
 
+/**
+ * Class to store tasks in a list.
+ */
 public class TaskList {
     private ArrayList<Task> tasks;
 
@@ -13,7 +16,7 @@ public class TaskList {
     }
 
     /**
-     * Get all tasks that is stored in this instance.
+     * Get all tasks that are stored in this instance.
      * @return ArrayList of tasks.
      */
     public ArrayList<Task> getTasks() {
@@ -22,8 +25,8 @@ public class TaskList {
 
     /**
      * Getter function for tasks at index.
-     * @param index
-     * @return task at specified index
+     * @param index index to retrieve.
+     * @return task at specified index.
      * @throws IndexOutOfBoundsException
      */
     public Task getTaskAtIndex(int index) throws IndexOutOfBoundsException {
@@ -31,8 +34,9 @@ public class TaskList {
     }
 
     /**
-     * Marks task at specified index as done.
-     * @param index
+     * Marks task as done.
+     * @param index index of task to be marked as done.
+     * @return response message after this task is marked.
      * @throws IndexOutOfBoundsException
      */
     public String markTaskAsDone(int index) throws IndexOutOfBoundsException {
@@ -43,8 +47,9 @@ public class TaskList {
     }
 
     /**
-     * Unmarks task at specified index as done.
-     * @param index
+     * Marks task as not done.
+     * @param index index of task to be unmarked as done.
+     * @return response message after this task is unmarked.
      * @throws IndexOutOfBoundsException
      */
     public String unmarkTaskAsDone(int index) throws IndexOutOfBoundsException {
@@ -55,10 +60,10 @@ public class TaskList {
     }
 
     /**
-     * Deletes task at specified index.
-     * @param index
+     * Deletes task from the list.
+     * @param index index of task to be deleted.
+     * @return response message after this task is deleted.
      * @throws IndexOutOfBoundsException
-     * @return
      */
     public String deleteTaskAtIndex(int index) throws IndexOutOfBoundsException {
         Task deleted = this.tasks.get(index);
@@ -73,8 +78,9 @@ public class TaskList {
     }
 
     /**
-     * Add specified task to the list.
-     * @param task
+     * Adds a new task to the list.
+     * @param task task to be added.
+     * @return response message after the task is added.
      */
     public String addTask(Task task) {
         this.tasks.add(task);
@@ -85,7 +91,7 @@ public class TaskList {
     }
 
     /**
-     * Add specified task to the list, but prints no message.
+     * Add specified task to the list, but returns no message.
      * @param task
      */
     public void addTaskNoMessage(Task task) {

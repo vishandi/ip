@@ -1,10 +1,13 @@
 package duke;
 
+/**
+ * Class for DukeException, exceptions used in this project.
+ */
 public class DukeException extends Exception {
 
     /**
      * Constructor for DukeException.
-     * @param msg
+     * @param msg message that will be printed when the exception is thrown.
      */
     public DukeException(String msg) {
         super(msg);
