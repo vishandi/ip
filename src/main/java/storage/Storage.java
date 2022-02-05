@@ -71,6 +71,7 @@ public class Storage implements IStorage{
      * @throws DukeException
      */
     public void writeToFile(TaskList taskList) throws DukeException {
+        assert taskList != null;
         StringBuilder msg = new StringBuilder();
         for (Task task : taskList.getTasks()) {
             msg.append(task.getSaveMessage()).append("\n");
@@ -91,6 +92,7 @@ public class Storage implements IStorage{
      * @throws DukeException
      */
     public Task processLine(String line) throws DukeException { //can add exception when handling the lines for possible corrupted file
+        assert line != null;
         String[] description = line.split(" / ");
         try {
             switch (description[0]) {
