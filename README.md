@@ -24,4 +24,4 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
    ```
 
 Todo:
-- Improve GUi (Greet, messages, template)
+- Improve GUi (Greet, messages, template, size)
