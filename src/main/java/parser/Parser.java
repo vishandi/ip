@@ -45,21 +45,26 @@ public class Parser {
                 String description = userInput.split(" ", 2)[1];
                 description = description.trim();
                 if (description.equals("")) {
-                    throw DukeException.DukeTodoEmpty();
+                    throw DukeException.DukeDescriptionEmpty();
                 }
                 return new Todo(description);
             } catch (IndexOutOfBoundsException e) {
-                throw DukeException.DukeTodoEmpty();
+                throw DukeException.DukeDescriptionEmpty();
             } catch (DukeException d) {
-                throw DukeException.DukeTodoEmpty();
+                throw DukeException.DukeDescriptionEmpty();
             }
 
         case "deadline":
             try {
                 String[] descriptionAndTime = userInput.substring(9).split(" /by ");
-                String description = descriptionAndTime[0];
+                String description = descriptionAndTime[0].trim();
+                if (description.equals("")) {
+                    throw DukeException.DukeDescriptionEmpty();
+                }
                 LocalDate deadlineTime = LocalDate.parse(descriptionAndTime[1].trim());
                 return new Deadline(description, deadlineTime);
+            } catch (DukeException d) {
+                throw DukeException.DukeDescriptionEmpty();
             } catch (Exception e) {
                 throw DukeException.DukeInvalidCommand();
             }
@@ -67,9 +72,14 @@ public class Parser {
         case "event":
             try {
                 String[] descriptionAndTime = userInput.substring(6).split(" /at ");
-                String description = descriptionAndTime[0];
+                String description = descriptionAndTime[0].trim();
+                if (description.equals("")) {
+                    throw DukeException.DukeDescriptionEmpty();
+                }
                 LocalDate eventTime = LocalDate.parse(descriptionAndTime[1].trim());
                 return new Event(description, eventTime);
+            } catch (DukeException d) {
+                throw DukeException.DukeDescriptionEmpty();
             } catch (Exception e) {
                 throw DukeException.DukeInvalidCommand();
             }
@@ -105,5 +115,11 @@ public class Parser {
         } catch (Exception e) {
             throw DukeException.DukeInvalidCommand();
         }
+    }
+
+    public boolean checkDuplicateTask(Task task, ArrayList<Task> tasks) {
+        Predicate<Task> duplicatePredicate = t -> t.equals(task);
+        return tasks.stream().
+                anyMatch(duplicatePredicate);
     }
 }

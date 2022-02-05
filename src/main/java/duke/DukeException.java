@@ -10,7 +10,8 @@ public class DukeException extends Exception {
             "Please check your file, some of its lines are corrupted :(";
     private static final String INVALID_COMMAND_MSG = "Sorry, I don't understand your command :(";
     private static final String INVALID_INDEX_MSG = "Sorry, I don't understand which task you're talking about :(";
-    private static final String TODO_EMPTY_MSG = "OOPS!!! The description of a todo cannot be empty.";
+    private static final String DESCRIPTION_EMPTY_MSG = "OOPS!!! The description cannot be empty.";
+    private static final String DUPLICATE_MSG = "Are you sure you want to add this task? You have added the same one!";
 
     /**
      * Constructor for DukeException.
@@ -22,7 +23,7 @@ public class DukeException extends Exception {
 
     /**
      * A type of DukeException to handle IOException.
-     * @return
+     * @return DukeException
      */
     public static DukeException DukeIOException() {
         return new DukeException(IO_EXCEPTION_MSG);
@@ -30,7 +31,7 @@ public class DukeException extends Exception {
 
     /**
      * A type of DukeException to handle FileNotFoundException.
-     * @return
+     * @return DukeException
      */
     public static DukeException DukeFileNotFoundException() {
         return new DukeException(FILE_NOT_FOUND_EXCEPTION_MSG);
@@ -38,7 +39,7 @@ public class DukeException extends Exception {
 
     /**
      * A type of DukeException to handle Incomplete lines on the file.
-     * @return
+     * @return DukeException
      */
     public static DukeException DukeFileIncomplete() {
         return new DukeException(FILE_INCOMPLETE_MSG);
@@ -46,7 +47,7 @@ public class DukeException extends Exception {
 
     /**
      * A type of DukeException to handle invalid command.
-     * @return
+     * @return DukeException
      */
     public static DukeException DukeInvalidCommand() {
         return new DukeException(INVALID_COMMAND_MSG);
@@ -54,7 +55,7 @@ public class DukeException extends Exception {
 
     /**
      * A type of DukeException to handle IndexOutOfBoundException.
-     * @return
+     * @return DukeException
      */
     public static DukeException DukeInvalidIndex() {
         return new DukeException(INVALID_INDEX_MSG);
@@ -62,9 +63,17 @@ public class DukeException extends Exception {
 
     /**
      * A type of DukeException to handle Invalid todo command.
-     * @return
+     * @return DukeException
      */
-    public static DukeException DukeTodoEmpty() {
-        return new DukeException(TODO_EMPTY_MSG);
+    public static DukeException DukeDescriptionEmpty() {
+        return new DukeException(DESCRIPTION_EMPTY_MSG);
+    }
+
+    /**
+     * A type of DukeException to handle Duplicate task.
+     * @return DukeException
+     */
+    public static DukeException DukeDuplicate() {
+        return new DukeException(DUPLICATE_MSG);
     }
 }

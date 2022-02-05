@@ -51,4 +51,19 @@ public class Event extends Task {
             return String.format("[E][ ] %s (at: %s)", this.description, timeString);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Event)) {
+            return false;
+        }
+
+        Event event = (Event) o;
+
+        return event.description.equals(this.description);
+    }
 }
