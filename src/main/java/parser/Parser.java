@@ -34,7 +34,7 @@ public class Parser {
      * @return Task corresponding to the user input.
      * @throws DukeException
      */
-    public Task parseFromUi(String command, String userInput) throws DukeException {
+    public Task parseTaskFromUi(String command, String userInput) throws DukeException {
         switch (command) {
         case "todo":
             try {

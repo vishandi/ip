@@ -160,7 +160,7 @@ public class Duke {
                 }
 
             default:
-                Task task = this.parser.parseFromUi(command, userInput);
+                Task task = this.parser.parseTaskFromUi(command, userInput);
                 response = this.taskList.addTask(task);
                 writeTasks();
                 return response;
