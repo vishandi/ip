@@ -41,7 +41,7 @@ public class Ui {
      * @param matchTasks
      * @return the string version of matching tasks.
      */
-    public String getMatchingTasks(ArrayList<Task> matchTasks) {
+    public String getMatchingTasksMessage(ArrayList<Task> matchTasks) {
         assert matchTasks != null;
         if (matchTasks.isEmpty()) {
             return "No task matches your keyword :(";

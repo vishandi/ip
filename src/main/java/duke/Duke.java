@@ -19,6 +19,9 @@ public class Duke {
     public Ui ui;
     public Parser parser;
     private static final String BYE = "Bye! Hope to see you soon!";
+    private static final int MARK_LENGTH = 5;
+    private static final int UNMARK_LENGTH = 7;
+    private static final int DELETE_LENGTH = 7;
 
     /**
      * Constructor for Duke that takes in saveFileDirectory and saveFileName and parsing it to Storage class.
@@ -114,7 +117,7 @@ public class Duke {
 
             case "mark":
                 try {
-                    int index = Integer.parseInt(userInput.substring(5)) - 1;
+                    int index = Integer.parseInt(userInput.substring(MARK_LENGTH)) - 1;
                     response = this.taskList.markTaskAsDone(index);
                     writeTasks();
                     return response;
@@ -128,7 +131,7 @@ public class Duke {
 
             case "unmark":
                 try {
-                    int index = Integer.parseInt(userInput.substring(7)) - 1;
+                    int index = Integer.parseInt(userInput.substring(UNMARK_LENGTH)) - 1;
                     response = this.taskList.unmarkTaskAsDone(index);
                     writeTasks();
                     return response;
@@ -142,7 +145,7 @@ public class Duke {
 
             case "delete":
                 try {
-                    int index = Integer.parseInt(userInput.substring(7)) - 1;
+                    int index = Integer.parseInt(userInput.substring(DELETE_LENGTH)) - 1;
                     response = this.taskList.deleteTaskAtIndex(index);
                     writeTasks();
                     return response;
@@ -152,16 +155,16 @@ public class Duke {
 
             case "find":
                 try {
-                    ArrayList<Task> matchTasks = this.parser.findTasksByKeyword(userInput,
+                    ArrayList<Task> matchingTasks = this.parser.findTasksByKeyword(userInput,
                             this.taskList.getTasks());
-                    response = this.ui.getMatchingTasks(matchTasks);
+                    response = this.ui.getMatchingTasksMessage(matchingTasks);
                     return response;
                 } catch (DukeException d) {
                     throw d;
                 }
 
             default:
-                Task task = this.parser.parseFromUi(command, userInput);
+                Task task = this.parser.parseTaskFromUi(command, userInput);
                 response = this.taskList.addTask(task);
                 writeTasks();
                 return response;

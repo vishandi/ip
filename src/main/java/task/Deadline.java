@@ -44,12 +44,11 @@ public class Deadline extends Task {
 
     @Override
     public String toString() {
+        String timeString = this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
         if (this.isDone) {
-            return String.format("[D][X] %s (by: %s)", this.description,
-                    this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            return String.format("[D][X] %s (by: %s)", this.description, timeString);
         } else {
-            return String.format("[D][ ] %s (by: %s)", this.description,
-                    this.deadlineTime.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+            return String.format("[D][ ] %s (by: %s)", this.description, timeString);
         }
     }
 }
