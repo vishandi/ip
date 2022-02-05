@@ -51,4 +51,19 @@ public class Deadline extends Task {
             return String.format("[D][ ] %s (by: %s)", this.description, timeString);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+
+        if (!(o instanceof Deadline)) {
+            return false;
+        }
+
+        Deadline deadline = (Deadline) o;
+
+        return deadline.description.equals(this.description);
+    }
 }
