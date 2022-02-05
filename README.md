@@ -25,5 +25,3 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 
 Todo:
 - Improve GUi (Greet, messages, template)
-- Update JavaDoc
-- Improve code quality (Duke.java, Ui.java)
