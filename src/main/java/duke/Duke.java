@@ -93,6 +93,7 @@ public class Duke {
      * @return response from the logic.
      */
     public String processUserInput(String userInput) {
+        assert userInput != null;
         String[] userInputs = userInput.split(" ");
         String command = userInputs[0];
         String response;
