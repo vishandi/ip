@@ -151,9 +151,9 @@ public class Duke {
 
             case "find":
                 try {
-                    ArrayList<Task> matchTasks = this.parser.findTasksByKeyword(userInput,
+                    ArrayList<Task> matchingTasks = this.parser.findTasksByKeyword(userInput,
                             this.taskList.getTasks());
-                    response = this.ui.getMatchingTasks(matchTasks);
+                    response = this.ui.getMatchingTasksMessage(matchingTasks);
                     return response;
                 } catch (DukeException d) {
                     throw d;
