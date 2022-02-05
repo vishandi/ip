@@ -11,6 +11,9 @@ import task.Todo;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Parser class.
@@ -90,12 +93,12 @@ public class Parser {
             } else {
                 keyword = keyword.trim();
             }
-            ArrayList<Task> matchTasks = new ArrayList<>();
-            for (Task task : tasks) {
-                if (task.getDescription().contains(keyword)) {
-                    matchTasks.add(task);
-                }
-            }
+            String finalKeyword = keyword;
+            Predicate<Task> matchingPredicate = task -> task.getDescription().contains(finalKeyword);
+            List<Task> matchTasksList = tasks.stream().
+                    filter(matchingPredicate).
+                    collect(Collectors.toList());
+            ArrayList<Task> matchTasks = new ArrayList<>(matchTasksList);
             return matchTasks;
         } catch (Exception e) {
             throw DukeException.DukeInvalidCommand();
