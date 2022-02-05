@@ -165,7 +165,7 @@ public class Duke {
 
             default:
                 Task task = this.parser.parseTaskFromUi(command, userInput);
-                if (this.parser.checkDuplicateTask(task, this.taskList.getTasks())) {
+                if (this.parser.isDuplicate(task, this.taskList.getTasks())) {
                     throw DukeException.DukeDuplicate();
                 }
                 response = this.taskList.addTask(task);

@@ -1,6 +1,7 @@
 package launcher;
 
 import duke.Duke;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
@@ -8,10 +9,17 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Controller for MainWindow. Provides the layout for the other controls.
  */
 public class MainWindow extends AnchorPane {
+    private static final String BYE_COMMAND = "bye";
+    private static final int DELAY = 700;
+
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -48,5 +56,17 @@ public class MainWindow extends AnchorPane {
                 DialogBox.getDukeDialog(response, dukeImage)
         );
         userInput.clear();
+
+        if (input.equals(BYE_COMMAND)) {
+            TimerTask closingPlatform = new TimerTask() {
+                @Override
+                public void run() {
+                    Platform.exit();
+                    System.exit(0);
+                }
+            };
+            Timer timer = new Timer();
+            timer.schedule(closingPlatform, DELAY);
+        }
     }
 }

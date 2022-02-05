@@ -117,7 +117,13 @@ public class Parser {
         }
     }
 
-    public boolean checkDuplicateTask(Task task, ArrayList<Task> tasks) {
+    /**
+     * Checks whether the task is a duplicate of any task in tasks.
+     * @param task the target task.
+     * @param tasks the lookup list of tasks.
+     * @return true if the task is a duplicate, false otherwise.
+     */
+    public boolean isDuplicate(Task task, ArrayList<Task> tasks) {
         Predicate<Task> duplicatePredicate = t -> t.equals(task);
         return tasks.stream().
                 anyMatch(duplicatePredicate);
