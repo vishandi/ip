@@ -35,6 +35,7 @@ public class Parser {
      * @throws DukeException
      */
     public Task parseFromUi(String command, String userInput) throws DukeException {
+        assert command != null && userInput != null;
         switch (command) {
         case "todo":
             try {
@@ -83,6 +84,7 @@ public class Parser {
      * @throws DukeException
      */
     public ArrayList<Task> findTasksByKeyword(String userInput, ArrayList<Task> tasks) throws DukeException {
+        assert userInput != null && tasks != null;
         try {
             String keyword = userInput.split(" ", 2)[1];
             if (keyword.trim().length() == 0) {
