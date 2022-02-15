@@ -23,7 +23,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/view/MainWindow.fxml"));
             AnchorPane ap = fxmlLoader.load();
             Scene scene = new Scene(ap);
-            stage.setTitle("Duke");
+            stage.setTitle("Hendri the Butler");
             stage.setScene(scene);
             duke.initialize();
             fxmlLoader.<MainWindow>getController().setDuke(duke);

@@ -18,7 +18,8 @@ public class Duke {
     public TaskList taskList;
     public Ui ui;
     public Parser parser;
-    private static final String BYE = "Bye! Hope to see you soon!";
+    private static final String BYE = "Although Hendri feels very saddened by this separation, " +
+            "I Hope to see you soon master!";
     private static final int MARK_LENGTH = 5;
     private static final int UNMARK_LENGTH = 7;
     private static final int DELETE_LENGTH = 7;

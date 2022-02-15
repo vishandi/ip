@@ -4,14 +4,17 @@ package duke;
  * Class for DukeException, exceptions used in this project.
  */
 public class DukeException extends Exception {
-    private static final String IO_EXCEPTION_MSG = "cannot handle the file, sorry :(";
-    private static final String FILE_NOT_FOUND_EXCEPTION_MSG = "No file found :(";
+    private static final String IO_EXCEPTION_MSG = "I'm really sorry Master, " +
+            "but Hendri cannot handle the file, sorry :(";
+    private static final String FILE_NOT_FOUND_EXCEPTION_MSG = "Hendri cannot find any file for your saved tasks :(";
     private static final String FILE_INCOMPLETE_MSG =
-            "Please check your file, some of its lines are corrupted :(";
-    private static final String INVALID_COMMAND_MSG = "Sorry, I don't understand your command :(";
-    private static final String INVALID_INDEX_MSG = "Sorry, I don't understand which task you're talking about :(";
-    private static final String DESCRIPTION_EMPTY_MSG = "OOPS!!! The description cannot be empty.";
-    private static final String DUPLICATE_MSG = "Are you sure you want to add this task? You have added the same one!";
+            "Please check Master's save file, some of its lines are corrupted :(";
+    private static final String INVALID_COMMAND_MSG = "Sorry, Hendri doesn't understand Master's command :(";
+    private static final String INVALID_INDEX_MSG = "Sorry, Hendri doesn't understand which task " +
+            "Master is talking about :(";
+    private static final String DESCRIPTION_EMPTY_MSG = "OOPS!!! Please put anything in the description Master.";
+    private static final String DUPLICATE_MSG = "Is Master sure Master wants to add this task? " +
+            "Master has already added the same one!";
 
     /**
      * Constructor for DukeException.

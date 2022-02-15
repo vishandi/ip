@@ -44,9 +44,9 @@ public class Ui {
     public String getMatchingTasksMessage(ArrayList<Task> matchTasks) {
         assert matchTasks != null;
         if (matchTasks.isEmpty()) {
-            return "No task matches your keyword :(";
+            return "Hendri's really sorry Master, but no task matches Master's keyword :(";
         } else {
-            StringBuilder response = new StringBuilder("Here are the matching tasks in your list:\n");
+            StringBuilder response = new StringBuilder("Okay! Here are the matching tasks in Master's list:\n");
             for (int i = 0; i < matchTasks.size(); i++) {
                 response.append(String.valueOf(i + 1));
                 response.append(". ");
