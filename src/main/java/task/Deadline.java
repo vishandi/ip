@@ -10,7 +10,8 @@ public class Deadline extends Task {
     protected LocalDate deadlineTime;
 
     /**
-     * Constructor for Deadline.
+     * Constructs Deadline.
+     *
      * @param description the description for the task.
      * @param isDone status of the task.
      * @param deadlineTime deadline time for the task.
@@ -21,7 +22,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Another constructor for Deadline.
+     * (Another) constructs Deadline.
+     *
      * @param description the description for the task.
      * @param DeadlineTime deadline time for the task.
      */
@@ -30,7 +32,8 @@ public class Deadline extends Task {
     }
 
     /**
-     * Get the saved message corresponding to this task.
+     * Gets the saved message corresponding to this task.
+     *
      * @return save message for the task.
      */
     @Override

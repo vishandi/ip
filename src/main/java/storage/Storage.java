@@ -21,7 +21,8 @@ public class Storage implements IStorage{
     private final String saveFilePath;
 
     /**
-     * Constructor for Storage.
+     * Constructs Storage.
+     *
      * @param saveFileDirectory directory for save file.
      * @param saveFileName name of the save file.
      * @throws DukeException
@@ -44,7 +45,8 @@ public class Storage implements IStorage{
     }
 
     /**
-     * Read tasks from file.
+     * Reads tasks from file.
+     *
      * @return TaskList tasks parsed from the file.
      * @throws DukeException
      */
@@ -66,7 +68,8 @@ public class Storage implements IStorage{
     }
 
     /**
-     * Write tasks to the file.
+     * Writes tasks to the file.
+     *
      * @param taskList tasks that are supposed to be written to the file.
      * @throws DukeException
      */
@@ -87,6 +90,7 @@ public class Storage implements IStorage{
 
     /**
      * Processes saved tasks from the file.
+     *
      * @param line each line from the file.
      * @return Task task corresponding to the line.
      * @throws DukeException

@@ -17,7 +17,8 @@ public class DukeException extends Exception {
             "Master has already added the same one!";
 
     /**
-     * Constructor for DukeException.
+     * Constructs a DukeException.
+     *
      * @param msg message that will be printed when the exception is thrown.
      */
     public DukeException(String msg) {
@@ -25,7 +26,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle IOException.
+     * Handles IOException.
+     *
      * @return DukeException
      */
     public static DukeException DukeIOException() {
@@ -33,7 +35,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle FileNotFoundException.
+     * Handles FileNotFoundException.
+     *
      * @return DukeException
      */
     public static DukeException DukeFileNotFoundException() {
@@ -41,7 +44,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle Incomplete lines on the file.
+     * Handles incomplete line in file.
+     *
      * @return DukeException
      */
     public static DukeException DukeFileIncomplete() {
@@ -49,7 +53,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle invalid command.
+     * Handles invalid command.
+     *
      * @return DukeException
      */
     public static DukeException DukeInvalidCommand() {
@@ -57,7 +62,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle IndexOutOfBoundException.
+     * Handles IndexOutOfBoundException
+     *
      * @return DukeException
      */
     public static DukeException DukeInvalidIndex() {
@@ -65,7 +71,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle Invalid todo command.
+     * Handles empty desctiption.
+     *
      * @return DukeException
      */
     public static DukeException DukeDescriptionEmpty() {
@@ -73,7 +80,8 @@ public class DukeException extends Exception {
     }
 
     /**
-     * A type of DukeException to handle Duplicate task.
+     * Handles duplicate tasks.
+     *
      * @return DukeException
      */
     public static DukeException DukeDuplicate() {

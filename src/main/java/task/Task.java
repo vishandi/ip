@@ -8,7 +8,8 @@ public abstract class Task {
     protected boolean isDone;
 
     /**
-     * Constructor for Task.
+     * Constructs Task.
+     *
      * @param description the description of the task
      * @param isDone the status of the task
      */
@@ -19,6 +20,7 @@ public abstract class Task {
 
     /**
      * Gets String that corresponds to the Task to be saved.
+     *
      * @return String save message for the task.
      */
     public abstract String getSaveMessage();
@@ -39,6 +41,7 @@ public abstract class Task {
 
     /**
      * Returns the processed status of the task.
+     *
      * @return true if the task is done.
      */
     public boolean isDone() {
@@ -46,7 +49,8 @@ public abstract class Task {
     }
 
     /**
-     * Getter function for the task's description.
+     * Gets the task's description.
+     *
      * @return description of the task.
      */
     public String getDescription() {

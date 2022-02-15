@@ -10,7 +10,8 @@ public class Event extends Task {
     protected LocalDate eventTime;
 
     /**
-     * Constructor for Event.
+     * Constructs Event.
+     *
      * @param description the description for the task.
      * @param isDone status of the task.
      * @param eventTime event time of the task.
@@ -21,7 +22,8 @@ public class Event extends Task {
     }
 
     /**
-     * Another constructor for Event.
+     * (Another) constructs Event.
+     *
      * @param description the description for the task.
      * @param eventTime status of the task.
      */
@@ -30,7 +32,8 @@ public class Event extends Task {
     }
 
     /**
-     * Get the saved message corresponding to this task.
+     * Gets the saved message corresponding to this task.
+     *
      * @return save message for the task.
      */
     @Override

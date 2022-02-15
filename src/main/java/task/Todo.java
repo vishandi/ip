@@ -6,7 +6,8 @@ package task;
 public class Todo extends Task {
 
     /**
-     * Constructor for Todo Task.
+     * Constructs Todo Task.
+     *
      * @param description Description of a Todo task.
      * @param isDone status of the task.
      */
@@ -15,7 +16,8 @@ public class Todo extends Task {
     }
 
     /**
-     * Another constructor for Todo Task.
+     * (Another) constructs Todo Task.
+     *
      * @param description Description of a Todo task.
      */
     public Todo(String description) {
@@ -23,7 +25,8 @@ public class Todo extends Task {
     }
 
     /**
-     * Get the saved message corresponding to this task.
+     * Gets the saved message corresponding to this task.
+     *
      * @return save message for the task.
      */
     @Override

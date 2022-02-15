@@ -11,6 +11,7 @@ import task.TaskList;
 public interface IStorage {
     /**
      * Reads file from the path.
+     *
      * @return TaskList list of tasks from file.
      * @throws DukeException
      */
@@ -18,6 +19,7 @@ public interface IStorage {
 
     /**
      * Writes the tasks to the file on the path.
+     *
      * @param taskList write tasks to file.
      * @throws DukeException
      */
@@ -25,6 +27,7 @@ public interface IStorage {
 
     /**
      * Processes lines from the file.
+     *
      * @param line line from file.
      * @return Task corresponding to line.
      * @throws DukeException

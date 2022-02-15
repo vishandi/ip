@@ -10,7 +10,7 @@ import ui.Ui;
 import java.util.ArrayList;
 
 /**
- * Constructor for Duke class.
+ * Constructs Duke object.
  * Main logic for Duke.
  */
 public class Duke {
@@ -25,7 +25,8 @@ public class Duke {
     private static final int DELETE_LENGTH = 7;
 
     /**
-     * Constructor for Duke that takes in saveFileDirectory and saveFileName and parsing it to Storage class.
+     * Constructs Duke that takes in saveFileDirectory and saveFileName and parsing it to Storage class.
+     *
      * @param saveFileDirectory save file directory for recorded tasks.
      * @param saveFileName save file name of the recorded tasks.
      */
@@ -37,7 +38,8 @@ public class Duke {
     }
 
     /**
-     * Another constructor for Duke which directly parse the input to storage attribute.
+     * (Another) constructs Duke which directly parse the input to storage attribute.
+     *
      * @param storage any object of IStorage class.
      */
     public Duke(IStorage storage) {
@@ -48,7 +50,8 @@ public class Duke {
     }
 
     /**
-     * The main logic of the process of Duke.
+     * Functions as the main logic of the process of Duke.
+     *
      * @param args
      * @throws DukeException
      */
@@ -59,7 +62,8 @@ public class Duke {
     }
 
     /**
-     * Initialize Duke by reading from the default file.
+     * Initializes Duke by reading from the default file.
+     *
      * @throws DukeException
      */
     public void initialize() throws DukeException {
@@ -67,7 +71,7 @@ public class Duke {
     }
 
     /**
-     * The main process of how Duke runs.
+     * Runs the main process of Duke.
      */
     public void run() {
         while (true) {
@@ -80,7 +84,8 @@ public class Duke {
     }
 
     /**
-     * Method to write all current tasks to the default file via Storage.
+     * Writes all current tasks to the default file via Storage.
+     *
      * @throws DukeException
      */
     public void writeTasks() throws DukeException {
@@ -88,7 +93,8 @@ public class Duke {
     }
 
     /**
-     * Method to process user input and get what it means.
+     * Processes user input and gets what it means.
+     *
      * @param userInput user input in form of String.
      * @return response from the logic.
      */

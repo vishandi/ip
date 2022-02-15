@@ -19,7 +19,7 @@ public class TaskListTest {
 
     @Test
     public void addTask_validInput_addedSuccessfully() {
-        testTaskList.addTask(new Todo("test"));
+        testTaskList.addTask(new Todo("test2"));
         Assertions.assertEquals(2,
                 testTaskList.getTasks()
                         .size());

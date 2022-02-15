@@ -24,7 +24,7 @@ public class Parser {
     private static final String[] COMMANDS = new String[] {"todo", "deadline", "event"};
 
     /**
-     * Constructor for Parser.
+     * Constructs Parser.
      */
     public Parser() {
         this.ui = new Ui();
@@ -32,6 +32,7 @@ public class Parser {
 
     /**
      * Parses the user input.
+     *
      * @param command what command is the user inputting.
      * @param userInput the full user input.
      * @return Task corresponding to the user input.
@@ -91,10 +92,11 @@ public class Parser {
 
     /**
      * Finds tasks that match the keyword.
+     *
      * @param userInput the full user input.
      * @param tasks list of tasks that we want to match.
      * @return ArrayList\<Task\> of all tasks that match the keyword.
-     * @throws DukeException
+     * @throws DukeException if there is found any error.
      */
     public ArrayList<Task> findTasksByKeyword(String userInput, ArrayList<Task> tasks) throws DukeException {
         assert userInput != null && tasks != null;
@@ -119,6 +121,7 @@ public class Parser {
 
     /**
      * Checks whether the task is a duplicate of any task in tasks.
+     *
      * @param task the target task.
      * @param tasks the lookup list of tasks.
      * @return true if the task is a duplicate, false otherwise.
