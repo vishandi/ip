@@ -15,6 +15,9 @@ public class DukeException extends Exception {
     private static final String DESCRIPTION_EMPTY_MSG = "OOPS!!! Please put anything in the description Master.";
     private static final String DUPLICATE_MSG = "Is Master sure Master wants to add this task? " +
             "Master has already added the same one!";
+    private static final String INVALID_DATE_FORMAT = "I'm really sorry, Master, but I don't understand the date " +
+            "Master is referring to. Please input the date in one of the following format: \"yyyy-MM-dd\", " +
+            "\"yyyy/MM/dd\", \"yyyy MMM dd\", \"dd MMM yyyy\", \"dd-MM-yyyy\", \"dd/MM/yyyy\"";
 
     /**
      * Constructs a DukeException.
@@ -86,5 +89,14 @@ public class DukeException extends Exception {
      */
     public static DukeException DukeDuplicate() {
         return new DukeException(DUPLICATE_MSG);
+    }
+
+    /**
+     * Handles invalid date format.
+     *
+     * @return DukeException
+     */
+    public static DukeException DukeInvalidDateFormat() {
+        return new DukeException(INVALID_DATE_FORMAT);
     }
 }

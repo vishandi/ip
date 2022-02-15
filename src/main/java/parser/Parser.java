@@ -9,7 +9,9 @@ import task.Event;
 import task.Task;
 import task.Todo;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
@@ -62,10 +64,10 @@ public class Parser {
                 if (description.equals("")) {
                     throw DukeException.DukeDescriptionEmpty();
                 }
-                LocalDate deadlineTime = LocalDate.parse(descriptionAndTime[1].trim());
+                LocalDate deadlineTime = parseDate(descriptionAndTime[1].trim());
                 return new Deadline(description, deadlineTime);
             } catch (DukeException d) {
-                throw DukeException.DukeDescriptionEmpty();
+                throw d;
             } catch (Exception e) {
                 throw DukeException.DukeInvalidCommand();
             }
@@ -77,10 +79,10 @@ public class Parser {
                 if (description.equals("")) {
                     throw DukeException.DukeDescriptionEmpty();
                 }
-                LocalDate eventTime = LocalDate.parse(descriptionAndTime[1].trim());
+                LocalDate eventTime = parseDate(descriptionAndTime[1].trim());
                 return new Event(description, eventTime);
             } catch (DukeException d) {
-                throw DukeException.DukeDescriptionEmpty();
+                throw d;
             } catch (Exception e) {
                 throw DukeException.DukeInvalidCommand();
             }
@@ -130,5 +132,26 @@ public class Parser {
         Predicate<Task> duplicatePredicate = t -> t.equals(task);
         return tasks.stream().
                 anyMatch(duplicatePredicate);
+    }
+
+    /**
+     * Parses the date that the user means.
+     *
+     * @param date date in String representation
+     * @return LocalDate if the String is compatible with one of the available patterns.
+     * @throws DukeException if the String isn't compatible with any.
+     */
+    public LocalDate parseDate(String date) throws DukeException {
+        System.out.println(date);
+        String[] patterns = {"yyyy-MM-dd", "yyyy/MM/dd", "yyyy MMM dd", "dd MMM yyyy", "dd-MM-yyyy", "dd/MM/yyyy"};
+        for (String pattern : patterns) {
+            try {
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
+                return LocalDate.parse(date, formatter);
+            } catch (Exception e) {
+
+            }
+        }
+        throw DukeException.DukeInvalidDateFormat();
     }
 }
