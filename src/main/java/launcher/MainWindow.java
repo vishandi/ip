@@ -18,6 +18,8 @@ import java.util.TimerTask;
  */
 public class MainWindow extends AnchorPane {
     private static final String BYE_COMMAND = "bye";
+    private static final String GREETING =
+            "Hello, I'm Hendri Tanjaya your most loyal butler. What can I help Master with today?";
     private static final int DELAY = 700;
 
     @FXML
@@ -37,6 +39,10 @@ public class MainWindow extends AnchorPane {
     @FXML
     public void initialize() {
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
+        //@@author vishandi-reused
+        //Reused from https://github.com/zunedz/ip/
+        //  with minor modification
+        dialogContainer.getChildren().add(DialogBox.getDukeDialog(GREETING, dukeImage));
     }
 
     public void setDuke(Duke d) {

@@ -6,6 +6,14 @@ import java.util.ArrayList;
  * Class to store tasks in a list.
  */
 public class TaskList {
+    private static final String MARK_AS_DONE = "Great job Master! You have finished this task! " +
+            "Hendri has marked this task as done:";
+    private static final String UNMARK_AS_DONE = "Are you not doing well Master? " +
+            "Why are you unmarking this task:";
+    private static final String DELETE_TASK = "Are you not satisfied with Hendri's service Master :( ? " +
+            "Okay, Hendri has removed this task:";
+    private static final String ADD_TASK = "Yey! Hendri got another task to handle for Master! " +
+            "Okay, Hendri has added this task:";
     private ArrayList<Task> tasks;
 
     /**
@@ -42,7 +50,7 @@ public class TaskList {
     public String markTaskAsDone(int index) throws IndexOutOfBoundsException {
         this.tasks.get(index).markAsDone();
         return String.format("%s \n %s \n",
-                "Nice! I've marked this task as done:",
+                MARK_AS_DONE,
                 tasks.get(index));
     }
 
@@ -55,7 +63,7 @@ public class TaskList {
     public String unmarkTaskAsDone(int index) throws IndexOutOfBoundsException {
         this.tasks.get(index).unmarkAsDone();
         return String.format("%s \n %s \n",
-                "Nice! I've unmarked this task as done:",
+                UNMARK_AS_DONE,
                 tasks.get(index));
     }
 
@@ -67,14 +75,13 @@ public class TaskList {
      */
     public String deleteTaskAtIndex(int index) throws IndexOutOfBoundsException {
         Task deleted = this.tasks.get(index);
-        System.out.println("Noted. I've removed this task:");
+        System.out.println(DELETE_TASK);
         System.out.println(deleted);
         this.tasks.remove(index);
         return String.format("%s \n %s \n %s \n",
-                "Noted. I've removed this task:",
+                DELETE_TASK,
                 deleted.toString(),
-                String.format("Now you have %s tasks in the list.", this.tasks.size()));
-
+                String.format("Now Master has %s tasks in the list.", this.tasks.size()));
     }
 
     /**
@@ -85,9 +92,9 @@ public class TaskList {
     public String addTask(Task task) {
         this.tasks.add(task);
         return String.format("%s \n%s \n%s",
-                "Got it. I've added this task:",
+                ADD_TASK,
                 tasks.get(tasks.size() - 1).toString(),
-                String.format("Now you have %s tasks in the list.", tasks.size()));
+                String.format("Now Master has %s tasks in the list.", tasks.size()));
     }
 
     /**
@@ -101,10 +108,10 @@ public class TaskList {
     @Override
     public String toString() {
         if (this.tasks.isEmpty()) {
-            return "You don't have any task at the moment.";
+            return "Hendri really wants to help, but Master doesn't have any task at the moment.";
         } else {
             StringBuilder msg = new StringBuilder();
-            msg.append("Here are your current tasks:");
+            msg.append("Here are Master's current tasks:");
             for (int i = 0; i < this.tasks.size(); i++) {
                 msg.append("\n");
                 msg.append(i + 1);

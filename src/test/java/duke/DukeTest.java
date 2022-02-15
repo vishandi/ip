@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import storage.StorageStub;
+import task.Todo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -29,6 +30,7 @@ public class DukeTest {
     @Test
     public void processUserInput_byeInput_sayGoodbye() {
         String result = duke.processUserInput("bye");
-        Assertions.assertEquals("Bye! Hope to see you again!", result);
+        Assertions.assertEquals("Although Hendri feels very saddened by this separation, " +
+                "I Hope to see you soon master!", result);
     }
 }
