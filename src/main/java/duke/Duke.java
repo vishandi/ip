@@ -59,7 +59,6 @@ public class Duke {
 
     /**
      * Initialize Duke by reading from the default file.
-     * Greet Users.
      * @throws DukeException
      */
     public void initialize() throws DukeException {

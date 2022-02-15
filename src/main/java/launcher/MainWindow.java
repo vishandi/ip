@@ -57,6 +57,9 @@ public class MainWindow extends AnchorPane {
         );
         userInput.clear();
 
+        //@@author vishandi-reused
+        //Reused from https://github.com/godjuansan/ip/
+        //  with minor modification
         if (input.equals(BYE_COMMAND)) {
             TimerTask closingPlatform = new TimerTask() {
                 @Override
