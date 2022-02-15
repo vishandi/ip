@@ -2,7 +2,15 @@
 Hendri is a powerful butler that will serve you as his Master with all his might
 and power. Hendri is equipped with an ability to manage your tasks. The GUI is
 very pretty and very easy to use. 
-## Features 
+
+## Setup
+To start using Hendri the Butler, you could follow the following steps:
+1. Ensure that you have installed Java 11 or above on your local computer. 
+2. Download the latest duke.jar file from this repo, or by clicking [here](https://github.com/vishandi/ip/releases/download/A-Release/duke.jar)
+3. Double click on the downloaded .jar application
+4. Enjoy using Hendri the Butler! 
+
+## Features  
 
 ### Chat-like GUI
 
