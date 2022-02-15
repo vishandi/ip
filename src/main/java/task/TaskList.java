@@ -52,7 +52,7 @@ public class TaskList {
      */
     public String markTaskAsDone(int index) throws IndexOutOfBoundsException {
         this.tasks.get(index).markAsDone();
-        return String.format("%s \n %s \n",
+        return String.format("%s \n %s",
                 MARK_AS_DONE,
                 tasks.get(index));
     }
@@ -66,7 +66,7 @@ public class TaskList {
      */
     public String unmarkTaskAsDone(int index) throws IndexOutOfBoundsException {
         this.tasks.get(index).unmarkAsDone();
-        return String.format("%s \n %s \n",
+        return String.format("%s \n %s",
                 UNMARK_AS_DONE,
                 tasks.get(index));
     }
@@ -80,10 +80,8 @@ public class TaskList {
      */
     public String deleteTaskAtIndex(int index) throws IndexOutOfBoundsException {
         Task deleted = this.tasks.get(index);
-        System.out.println(DELETE_TASK);
-        System.out.println(deleted);
         this.tasks.remove(index);
-        return String.format("%s \n %s \n %s \n",
+        return String.format("%s \n %s \n %s",
                 DELETE_TASK,
                 deleted.toString(),
                 String.format("Now Master has %s tasks in the list.", this.tasks.size()));

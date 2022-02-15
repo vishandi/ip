@@ -46,12 +46,12 @@ public class Ui {
         if (matchTasks.isEmpty()) {
             return "Hendri's really sorry Master, but no task matches Master's keyword :(";
         } else {
-            StringBuilder response = new StringBuilder("Okay! Here are the matching tasks in Master's list:\n");
+            StringBuilder response = new StringBuilder("Okay! Here are the matching tasks in Master's list:");
             for (int i = 0; i < matchTasks.size(); i++) {
+                response.append("\n");
                 response.append(String.valueOf(i + 1));
                 response.append(". ");
                 response.append(matchTasks.get(i).toString());
-                response.append("\n");
             }
             return response.toString();
         }
