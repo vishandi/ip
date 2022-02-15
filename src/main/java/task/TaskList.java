@@ -13,7 +13,7 @@ public class TaskList {
     private static final String DELETE_TASK = "Are you not satisfied with Hendri's service Master :( ? " +
             "Okay, Hendri has removed this task:";
     private static final String ADD_TASK = "Yey! Hendri got another task to handle for Master! " +
-            "Okay, Hnedri has added this task:";
+            "Okay, Hendri has added this task:";
     private ArrayList<Task> tasks;
 
     /**
